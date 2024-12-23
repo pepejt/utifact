@@ -1,0 +1,291 @@
+package ec.uti.edu.utifact
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import ec.uti.edu.utifact.entity.Cliente
+import ec.uti.edu.utifact.ui.LoginActivity
+
+public class database (context: Context): SQLiteOpenHelper(
+    context, DATABASE_NAME, null, DATABASE_VERSION){
+
+    companion object {
+        private const val DATABASE_NAME = "facturacion.db"
+        private const val DATABASE_VERSION = 1
+
+        // Nombre de las tablas
+        const val TABLE_USERS = "usuarios"
+        const val TABLE_CLIENTES = "clientes"
+        const val TABLE_EMISOR = "emisor"
+
+        // Columnas de la tabla Usuarios
+        const val COLUMN_USER_ID = "id_users"
+        const val COLUMN_USER_NAME = "user"
+        const val COLUMN_USER_PASSWORD = "password"
+        const val COLUMN_USER_ROLE = "rol"
+
+        // Columnas de la tabla Clientes
+        const val COLUMN_CLIENT_ID = "id_client"
+        const val COLUMN_CLIENT_NAME = "nombresClient"
+        const val COLUMN_CLIENT_ADDRESS = "direccionClient"
+        const val COLUMN_CLIENT_EMAIL = "correoClient"
+        const val COLUMN_CLIENT_CEDULA = "cedulaClient"
+        const val COLUMN_CLIENT_PHONE = "telefonoClient"
+
+        // Columnas de la tabla Emisor
+        const val COLUMN_EMISOR_ID = "id_emisor"
+        const val COLUMN_EMISOR_NAME = "nombresEmpre"
+        const val COLUMN_EMISOR_ADDRESS = "direccionEmpre"
+        const val COLUMN_EMISOR_PHONE = "TelefonoEmpre"
+    }
+
+    override fun onCreate(db: SQLiteDatabase) {
+        // Crear tabla Usuarios
+        val createTableUsuarios = """
+            CREATE TABLE $TABLE_USERS (
+                $COLUMN_USER_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                $COLUMN_USER_NAME NVARCHAR(50),
+                $COLUMN_USER_PASSWORD NVARCHAR(50),
+                $COLUMN_USER_ROLE INTEGER
+            )
+        """
+        db.execSQL(createTableUsuarios)
+
+        // Crear tabla Clientes
+        val createTableClientes = """
+            CREATE TABLE $TABLE_CLIENTES (
+                $COLUMN_CLIENT_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                $COLUMN_CLIENT_NAME VARCHAR(60),
+                $COLUMN_CLIENT_ADDRESS NVARCHAR(65),
+                $COLUMN_CLIENT_EMAIL NVARCHAR(150),
+                $COLUMN_CLIENT_CEDULA NVARCHAR(13),
+                $COLUMN_CLIENT_PHONE NVARCHAR(10)
+            )
+        """
+        db.execSQL(createTableClientes)
+
+        // Crear tabla Emisor
+        val createTableEmisor = """
+            CREATE TABLE $TABLE_EMISOR (
+                $COLUMN_EMISOR_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                $COLUMN_EMISOR_NAME NVARCHAR(50),
+                $COLUMN_EMISOR_ADDRESS NVARCHAR(60),
+                $COLUMN_EMISOR_PHONE NVARCHAR(50)
+            )
+        """
+        db.execSQL(createTableEmisor)
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_CLIENTES")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_EMISOR")
+        onCreate(db)
+    }
+
+    // Métodos para insertar datos en las tablas
+
+    fun insertUsuario(user: String, password: String, rol: Int): Long {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_USER_NAME, user)
+            put(COLUMN_USER_PASSWORD, password)
+            put(COLUMN_USER_ROLE, rol)
+        }
+        return db.insert(TABLE_USERS, null, values)
+    }
+    fun insertUsuarioIfNotExists(user: String, password: String, rol: Int): Long {
+        if (!isUsuarioExists(user)) {
+            return insertUsuario(user, password, rol)
+        }
+        return -1 // Retorna -1 si ya existe
+    }
+
+
+    fun insertCliente(nombres: String, direccion: String, correo: String, cedula: String, telefono: String): Long {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_CLIENT_NAME, nombres)
+            put(COLUMN_CLIENT_ADDRESS, direccion)
+            put(COLUMN_CLIENT_EMAIL, correo)
+            put(COLUMN_CLIENT_CEDULA, cedula)
+            put(COLUMN_CLIENT_PHONE, telefono)
+        }
+        return db.insert(TABLE_CLIENTES, null, values)
+    }
+    fun insertClienteIfNotExists(nombres: String, direccion: String, correo: String, cedula: String, telefono: String): Long {
+        if (!isClienteExists(correo, cedula)) {
+            return insertCliente(nombres, direccion, correo, cedula, telefono)
+        }
+        return -1 // Retorna -1 si ya existe
+    }
+
+
+    fun insertEmisor(nombresEmpre: String, direccionEmpre: String, telefonoEmpre: String): Long {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_EMISOR_NAME, nombresEmpre)
+            put(COLUMN_EMISOR_ADDRESS, direccionEmpre)
+            put(COLUMN_EMISOR_PHONE, telefonoEmpre)
+        }
+        return db.insert(TABLE_EMISOR, null, values)
+    }
+    fun insertEmisorIfNotExists(nombresEmpre: String, direccionEmpre: String, telefonoEmpre: String): Long {
+        if (!isEmisorExists(nombresEmpre, telefonoEmpre)) {
+            return insertEmisor(nombresEmpre, direccionEmpre, telefonoEmpre)
+        }
+        return -1 // Retorna -1 si ya existe
+    }
+
+
+    // Método para validar credenciales de usuario
+    fun validateUsuario(user: String, password: String): Array<String>? {
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_USERS WHERE $COLUMN_USER_NAME = ? AND $COLUMN_USER_PASSWORD = ?"
+        val cursor = db.rawQuery(query, arrayOf(user, password))
+
+        var userData: Array<String>? = null
+
+        if (cursor.moveToFirst()) {
+            // Crear un array para almacenar los datos de las columnas
+            userData = Array(cursor.columnCount) { index ->
+                cursor.getString(index) // Obtiene el valor de cada columna
+            }
+        }
+
+        cursor.close() // Liberar el cursor
+        db.close() // Cerrar la conexión a la base de datos
+
+        return userData // Devuelve los datos del usuario o null si no se encontró
+    }
+    fun saveSession(context: Context, userData: Array<String>) {
+        val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+
+        // Guardar los datos del usuario
+        for (i in userData.indices) {
+            editor.putString("data_$i", userData[i]) // Guarda cada campo con una clave única
+        }
+
+        editor.putBoolean("isLoggedIn", true) // Estado de sesión activa
+        editor.apply()
+    }
+    fun getSession(context: Context): Array<String>? {
+        val sharedPreferences = context.getSharedPreferences("user_session", Context.MODE_PRIVATE)
+
+        if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+            val dataList = mutableListOf<String>()
+            var index = 0
+            while (sharedPreferences.contains("data_$index")) {
+                dataList.add(sharedPreferences.getString("data_$index", "") ?: "")
+                index++
+            }
+            return dataList.toTypedArray()
+        }
+
+        return null // No hay sesión activa
+    }
+    fun saveLoginState(context: Context, isLoggedIn: Boolean, userData: Array<String>? = null) {
+        val sharedPref = context.getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
+        // Guardar estado de login
+        editor.putBoolean("is_logged_in", isLoggedIn)
+
+        // Si el usuario se está logueando, guardar los datos
+        if (isLoggedIn && userData != null) {
+            for (i in userData.indices) {
+                editor.putString("user_data_$i", userData[i])
+            }
+        }
+
+        editor.apply()
+    }
+    fun getLoggedUserData(context: Context): Array<String>? {
+        val sharedPref = context.getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
+        if (sharedPref.getBoolean("is_logged_in", false)) {
+            val userData = mutableListOf<String>()
+            var index = 0
+            while (sharedPref.contains("user_data_$index")) {
+                userData.add(sharedPref.getString("user_data_$index", "") ?: "")
+                index++
+            }
+            return userData.toTypedArray()
+        }
+        return null
+    }
+    fun checkLoginState(context: Context) {
+        val sharedPref = context.getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
+        val isLoggedIn = sharedPref.getBoolean("is_logged_in", false)
+        if (!isLoggedIn) {
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            context.startActivity(intent)
+        }
+    }
+
+    // Método para verificar si un usuario, cliente, emisor ya existe en la base de datos
+    fun isUsuarioExists(user: String): Boolean {
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_USERS WHERE $COLUMN_USER_NAME = ?"
+        val cursor = db.rawQuery(query, arrayOf(user))
+        val exists = cursor.count > 0
+        cursor.close()
+        return exists
+    }
+    fun isClienteExists(correo: String, cedula: String): Boolean {
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_CLIENTES WHERE $COLUMN_CLIENT_EMAIL = ? OR $COLUMN_CLIENT_CEDULA = ?"
+        val cursor = db.rawQuery(query, arrayOf(correo, cedula))
+        val exists = cursor.count > 0
+        cursor.close()
+        return exists
+    }
+
+    fun isEmisorExists(nombre: String, telefono: String): Boolean {
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_EMISOR WHERE $COLUMN_EMISOR_NAME = ? OR $COLUMN_EMISOR_PHONE = ?"
+        val cursor = db.rawQuery(query, arrayOf(nombre, telefono))
+        val exists = cursor.count > 0
+        cursor.close()
+        return exists
+    }
+
+    //guardar estado
+    fun saveLoginState(context: Context, isLoggedIn: Boolean) {
+        val sharedPref = context.getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("is_logged_in", isLoggedIn)
+        editor.apply()
+    }
+    fun logout(context: Context) {
+        val sharedPref = context.getSharedPreferences("login_prefs", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putBoolean("is_logged_in", false)
+        editor.apply()
+    }
+    //busqueda de clientes en clientes.kt data
+    fun getClientes(): List<Cliente> {
+        val db = readableDatabase
+        val query = "SELECT $COLUMN_CLIENT_ID, $COLUMN_CLIENT_NAME FROM $TABLE_CLIENTES"
+        val cursor = db.rawQuery(query, null)
+        val clientes = mutableListOf<Cliente>()
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(0)
+                val nombre = cursor.getString(1)
+                val direccion= cursor.getString(2)
+                val correo= cursor.getString(3)
+                val cedula= cursor.getString(4)
+                val telefono= cursor.getString(5)
+
+                clientes.add(Cliente(id, nombre,direccion,correo,cedula,telefono))
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        return clientes
+    }
+}
