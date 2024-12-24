@@ -270,7 +270,7 @@ public class database (context: Context): SQLiteOpenHelper(
     fun getClientes(): List<Cliente> {
         val clientes = mutableListOf<Cliente>()
         val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM clientes", null)
+        val cursor = db.rawQuery("SELECT * FROM clientes where id_client like '%%'", null)
 
         if (cursor.moveToFirst()) {
             do {

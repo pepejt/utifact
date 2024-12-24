@@ -33,7 +33,9 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="name"
                 android:ems="10"
-                android:inputType="text"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textColorHint="@color/orange"
                 android:textAlignment="center"
                 android:hint="@string/Bus_ced_ruc" />
 
