@@ -40,4 +40,5 @@
     <string name="ingreProd">Ingreso de Productos</string>
     <string name="producto">Producto</string>
     <string name="stock">Stock</string>
+    <string name="ingreUsu">Ingreso de Usuarios</string>
 </resources>

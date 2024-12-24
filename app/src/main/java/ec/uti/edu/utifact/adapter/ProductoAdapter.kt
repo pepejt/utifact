@@ -24,10 +24,10 @@ class ProductoAdapter(
     override fun onBindViewHolder(holder: ProductoViewHolder, position: Int) {
         val producto = productos[position]
         holder.bind(producto)
-        holder.itemView.findViewById<ImageButton>(R.id.imgEdit).setOnClickListener {
+        holder.itemView.findViewById<ImageButton>(R.id.imgEditP).setOnClickListener {
             onEditClick(producto)
         }
-        holder.itemView.findViewById<ImageButton>(R.id.imgDelete).setOnClickListener {
+        holder.itemView.findViewById<ImageButton>(R.id.imgDeleteP).setOnClickListener {
             onDeleteClick(producto)
         }
     }

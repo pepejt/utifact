@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import ec.uti.edu.utifact.entity.Cliente
 import ec.uti.edu.utifact.entity.Producto
+import ec.uti.edu.utifact.entity.User
 import ec.uti.edu.utifact.ui.LoginActivity
 
 public class database (context: Context): SQLiteOpenHelper(
@@ -28,7 +29,7 @@ public class database (context: Context): SQLiteOpenHelper(
         const val COLUMN_USER_PASSWORD = "password"
         const val COLUMN_USER_ROLE = "rol"
 
-        // Columnas de la tabla Usuarios
+        // Columnas de la tabla Productos
         const val COLUMN_PRODUCT_ID = "id_product"
         const val COLUMN_PRODUCT_CODE = "codeProduct"
         const val COLUMN_PRODUCT_NAME = "nameProduct"
@@ -359,6 +360,26 @@ public class database (context: Context): SQLiteOpenHelper(
         cursor.close()
         db.close()
         return productos
+    }
+    fun getUsuarios(): List<User> {
+        val usuarios = mutableListOf<User>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM usuarios where user like '%%'", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(0)
+                val codeProd = cursor.getString(1)
+                val nameProd= cursor.getString(2)
+                val provedProd= cursor.getInt(3)
+                usuarios.add(User(id, codeProd, nameProd, provedProd))
+            } while (cursor.moveToNext())
+        }
+
+        println("Usuarios agregado a producto.kt: $usuarios")
+        cursor.close()
+        db.close()
+        return usuarios
     }
 
 }

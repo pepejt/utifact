@@ -15,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:text="@string/ingreProd" />
 
         <LinearLayout
@@ -43,7 +44,7 @@
 
                 <Button
                     android:id="@+id/btnBusProd"
-                    android:layout_width="wrap_content"
+                    android:layout_width="117dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="#F47121"
@@ -52,7 +53,7 @@
 
                 <Button
                     android:id="@+id/btnAddProd"
-                    android:layout_width="wrap_content"
+                    android:layout_width="117dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:backgroundTint="#F47121"
@@ -64,6 +65,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="64dp"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView

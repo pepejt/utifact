@@ -51,11 +51,11 @@ class FragmentProducto: Fragment()  {
         // Asignar el adaptador al RecyclerView
         recyclerView.adapter = productoadapter
 
-        val button = view.findViewById<MaterialButton>(R.id.btnBusClie)
+        val button = view.findViewById<MaterialButton>(R.id.btnBusProd)
         button.setOnClickListener {
             onBuscarProducto(view)
         }
-        val BtnAdd = view.findViewById<MaterialButton>(R.id.btnAddClie)
+        val BtnAdd = view.findViewById<MaterialButton>(R.id.btnAddProd)
         BtnAdd.setOnClickListener {
             onAgregarProducto(view)
         }
