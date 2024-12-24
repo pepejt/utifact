@@ -268,24 +268,26 @@ public class database (context: Context): SQLiteOpenHelper(
     }
     //busqueda de clientes en clientes.kt data
     fun getClientes(): List<Cliente> {
-        val db = readableDatabase
-        val query = "SELECT $COLUMN_CLIENT_ID, $COLUMN_CLIENT_NAME FROM $TABLE_CLIENTES"
-        val cursor = db.rawQuery(query, null)
         val clientes = mutableListOf<Cliente>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM clientes", null)
 
         if (cursor.moveToFirst()) {
             do {
-                val id = cursor.getInt(0)
-                val nombre = cursor.getString(1)
-                val direccion= cursor.getString(2)
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id_client"))
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombresClient"))
+                val direccion= cursor.getString(cursor.getColumnIndexOrThrow("direccionClient"))
                 val correo= cursor.getString(3)
                 val cedula= cursor.getString(4)
                 val telefono= cursor.getString(5)
-
-                clientes.add(Cliente(id, nombre,direccion,correo,cedula,telefono))
+                clientes.add(Cliente(id, nombre, direccion, correo, cedula, telefono))
             } while (cursor.moveToNext())
         }
+
+        println("Cliente agregado a cliente.kt: $clientes")
         cursor.close()
+        db.close()
         return clientes
     }
+
 }
