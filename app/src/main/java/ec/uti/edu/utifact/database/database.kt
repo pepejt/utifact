@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import ec.uti.edu.utifact.entity.Cliente
+import ec.uti.edu.utifact.entity.Producto
 import ec.uti.edu.utifact.ui.LoginActivity
 
 public class database (context: Context): SQLiteOpenHelper(
@@ -19,12 +20,21 @@ public class database (context: Context): SQLiteOpenHelper(
         const val TABLE_USERS = "usuarios"
         const val TABLE_CLIENTES = "clientes"
         const val TABLE_EMISOR = "emisor"
+        const val TABLE_PRODUCT = "productos"
 
         // Columnas de la tabla Usuarios
         const val COLUMN_USER_ID = "id_users"
         const val COLUMN_USER_NAME = "user"
         const val COLUMN_USER_PASSWORD = "password"
         const val COLUMN_USER_ROLE = "rol"
+
+        // Columnas de la tabla Usuarios
+        const val COLUMN_PRODUCT_ID = "id_product"
+        const val COLUMN_PRODUCT_CODE = "codeProduct"
+        const val COLUMN_PRODUCT_NAME = "nameProduct"
+        const val COLUMN_PRODUCT_PROVE = "proveedor"
+        const val COLUMN_PRODUCT_STOCK = "stock"
+        const val COLUMN_PRODUCT_PRECIO = "precio1"
 
         // Columnas de la tabla Clientes
         const val COLUMN_CLIENT_ID = "id_client"
@@ -76,12 +86,25 @@ public class database (context: Context): SQLiteOpenHelper(
             )
         """
         db.execSQL(createTableEmisor)
+        // Crear tabla Productos
+        val createTableProductos = """
+            CREATE TABLE $TABLE_PRODUCT (
+                $COLUMN_PRODUCT_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                $COLUMN_PRODUCT_CODE NVARCHAR(50),
+                $COLUMN_PRODUCT_NAME NVARCHAR(60),
+                $COLUMN_PRODUCT_PROVE NVARCHAR(50),
+                $COLUMN_PRODUCT_STOCK INTEGER,
+                $COLUMN_PRODUCT_PRECIO DECIMAL(10,2)
+            )
+        """
+        db.execSQL(createTableProductos)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_USERS")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_CLIENTES")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_EMISOR")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_PRODUCT")
         onCreate(db)
     }
 
@@ -99,6 +122,24 @@ public class database (context: Context): SQLiteOpenHelper(
     fun insertUsuarioIfNotExists(user: String, password: String, rol: Int): Long {
         if (!isUsuarioExists(user)) {
             return insertUsuario(user, password, rol)
+        }
+        return -1 // Retorna -1 si ya existe
+    }
+
+    fun insertProducto(codeProd: String, nameProd: String, provedProd: String, stock: Int, precio: Double): Long {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put(COLUMN_PRODUCT_CODE, codeProd)
+            put(COLUMN_PRODUCT_NAME, nameProd)
+            put(COLUMN_PRODUCT_PROVE, provedProd)
+            put(COLUMN_PRODUCT_STOCK, stock)
+            put(COLUMN_PRODUCT_PRECIO, precio)
+        }
+        return db.insert(TABLE_PRODUCT, null, values)
+    }
+    fun insertProductofNotExists(codeProd: String, nameProd: String, provedProd: String,stock: Int, precio: Double): Long {
+        if (!isProductExists(codeProd)) {
+            return insertProducto(codeProd, nameProd, provedProd, stock, precio)
         }
         return -1 // Retorna -1 si ya existe
     }
@@ -235,6 +276,14 @@ public class database (context: Context): SQLiteOpenHelper(
         cursor.close()
         return exists
     }
+    fun isProductExists(codeProd: String): Boolean {
+        val db = readableDatabase
+        val query = "SELECT * FROM $TABLE_PRODUCT WHERE $COLUMN_PRODUCT_CODE = ?"
+        val cursor = db.rawQuery(query, arrayOf(codeProd))
+        val exists = cursor.count > 0
+        cursor.close()
+        return exists
+    }
     fun isClienteExists(correo: String, cedula: String): Boolean {
         val db = readableDatabase
         val query = "SELECT * FROM $TABLE_CLIENTES WHERE $COLUMN_CLIENT_EMAIL = ? OR $COLUMN_CLIENT_CEDULA = ?"
@@ -270,7 +319,7 @@ public class database (context: Context): SQLiteOpenHelper(
     fun getClientes(): List<Cliente> {
         val clientes = mutableListOf<Cliente>()
         val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM clientes where id_client like '%%'", null)
+        val cursor = db.rawQuery("SELECT * FROM clientes where cedulaClient like '%%'", null)
 
         if (cursor.moveToFirst()) {
             do {
@@ -288,6 +337,28 @@ public class database (context: Context): SQLiteOpenHelper(
         cursor.close()
         db.close()
         return clientes
+    }
+    fun getProductos(): List<Producto> {
+        val productos = mutableListOf<Producto>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM productos where codeProduct like '%%'", null)
+
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(0)
+                val codeProd = cursor.getString(1)
+                val nameProd= cursor.getString(2)
+                val provedProd= cursor.getString(3)
+                val stock= cursor.getInt(4)
+                val precio= cursor.getDouble(5)
+                productos.add(Producto(id, codeProd, nameProd, provedProd, stock, precio))
+            } while (cursor.moveToNext())
+        }
+
+        println("Producto agregado a producto.kt: $productos")
+        cursor.close()
+        db.close()
+        return productos
     }
 
 }

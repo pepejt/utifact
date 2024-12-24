@@ -22,6 +22,7 @@ import ec.edu.uti.facturacionelectronica.fragments.FragmentInformation
 import ec.uti.edu.utifact.R
 import ec.uti.edu.utifact.database
 import ec.uti.edu.utifact.fragments.FragmentClient
+import ec.uti.edu.utifact.fragments.FragmentProducto
 
 class AdminActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -55,18 +56,22 @@ class AdminActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_informacion -> {
-                    // Reemplazar el fragmento al hacer clic
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, FragmentInformation())
-                        .addToBackStack(null) // Opcional: permite volver atrás
+                        .addToBackStack(null)
                         .commit()
                 }
                 R.id.nav_reportes -> showToast("Reportes")
+                R.id.nav_productos ->{
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, FragmentProducto())
+                        .addToBackStack(null)
+                        .commit()
+                }
                 R.id.nav_clientes -> {
-                    // Reemplazar el fragmento al hacer clic
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, FragmentClient())
-                        .addToBackStack(null) // Opcional: permite volver atrás
+                        .addToBackStack(null)
                         .commit()
                 }
                 R.id.nav_facturacion -> showToast("Facturación")

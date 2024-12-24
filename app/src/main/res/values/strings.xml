@@ -10,6 +10,7 @@
     <string name="facturacion_electronica">Facturación Electronica</string>
     <string name="inventario">Inventario</string>
     <string name="reportes">Reportes</string>
+    <string name="productos">Productos</string>
     <string name="clientes">Clientes</string>
     <string name="proveedores">Proveedores</string>
     <string name="facturaci_n">Facturación</string>
@@ -35,4 +36,8 @@
     <string name="cliente">Cliente</string>
     <string name="edit_client">edit client</string>
     <string name="delete_client">delete client</string>
+    <string name="codProd">Codigo de producto</string>
+    <string name="ingreProd">Ingreso de Productos</string>
+    <string name="producto">Producto</string>
+    <string name="stock">Stock</string>
 </resources>

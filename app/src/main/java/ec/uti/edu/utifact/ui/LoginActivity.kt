@@ -21,7 +21,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
-// Insertar un usuario
+        // Insertar un usuario
         val userId = dbHelper.insertUsuarioIfNotExists("admin", "admin123", 1)
         if (userId != -1L) {
             println("Usuario insertado con ID: $userId")
@@ -35,7 +35,7 @@ class LoginActivity : AppCompatActivity() {
             println("El usuario ya existe.")
         }
 
-// Insertar un cliente
+        // Insertar un cliente
         val clientId = dbHelper.insertClienteIfNotExists(
             "Juan Perez",
             "Calle 123",
@@ -49,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
             println("El cliente ya existe.")
         }
 
-// Insertar un emisor
+        // Insertar un emisor
         val emisorId = dbHelper.insertEmisorIfNotExists(
             "Mi Empresa",
             "Av. Principal",
@@ -60,6 +60,20 @@ class LoginActivity : AppCompatActivity() {
         } else {
             println("El emisor ya existe.")
         }
+        // Insertar un PRODUCTO
+        val productId = dbHelper.insertProductofNotExists(
+            "producto1",
+            "Prueba Producto 1",
+            "0987654321",
+            50,
+            20.05
+        )
+        if (productId != -1L) {
+            println("Producto insertado con ID: $productId")
+        } else {
+            println("El Producto ya existe.")
+        }
+
         //vista general
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
