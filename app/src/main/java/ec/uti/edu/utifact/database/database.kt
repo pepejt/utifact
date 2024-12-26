@@ -364,19 +364,19 @@ public class database (context: Context): SQLiteOpenHelper(
     fun getUsuarios(): List<User> {
         val usuarios = mutableListOf<User>()
         val db = this.readableDatabase
-        val cursor = db.rawQuery("SELECT * FROM usuarios where user like '%%'", null)
+        val cursor = db.rawQuery("SELECT * FROM usuarios", null)
 
         if (cursor.moveToFirst()) {
+            println("Número de registros en la tabla usuarios: ${cursor.count}")
             do {
                 val id = cursor.getInt(0)
                 val codeProd = cursor.getString(1)
                 val nameProd= cursor.getString(2)
                 val provedProd= cursor.getInt(3)
                 usuarios.add(User(id, codeProd, nameProd, provedProd))
+                println("Usuario en base de datos: ${cursor.getInt(0)}, ${cursor.getString(1)}, ${cursor.getString(2)}")
             } while (cursor.moveToNext())
         }
-
-        println("Usuarios agregado a producto.kt: $usuarios")
         cursor.close()
         db.close()
         return usuarios

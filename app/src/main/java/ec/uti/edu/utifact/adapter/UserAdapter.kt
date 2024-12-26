@@ -35,6 +35,7 @@ class UserAdapter(
 
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(user: User) {
+            println("Usuario a mostrar: ${user.user}")
             itemView.findViewById<TextView>(R.id.txtUsuario).text = user.user
         }
     }

@@ -29,12 +29,13 @@ class FragmentUser: Fragment()   {
         super.onViewCreated(view, savedInstanceState)
         // Inicializar el RecyclerView
         recyclerView = view.findViewById(R.id.rcvUsers)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(context)
         // Inicializar la base de datos
         dbHelper = database(requireContext())
 
         // Obtener datos de la base de datos
         val users = dbHelper.getUsuarios()
+        println("Usuarios obtenidos: $users")
         // Configurar el adaptador
         usersadapter = UserAdapter(
             users,

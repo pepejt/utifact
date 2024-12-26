@@ -97,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
                 dbHelper.saveLoginState(this, true, userData)
 
                 val userRole = userData[3]
-                println("Rol del usuario: $userRole")
+                println("id del usuario: ${userData[0]}")
                 val intent = when (userRole) {
                     "1" ->{
                         Intent(this, AdminActivity::class.java) // Redirigir al administrador

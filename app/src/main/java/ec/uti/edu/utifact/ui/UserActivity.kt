@@ -21,6 +21,7 @@ import ec.edu.uti.facturacionelectronica.fragments.FragmentFirst
 import ec.edu.uti.facturacionelectronica.fragments.FragmentInformation
 import ec.uti.edu.utifact.R
 import ec.uti.edu.utifact.database
+import ec.uti.edu.utifact.fragments.FragmentUser
 
 class UserActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -29,7 +30,7 @@ class UserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_user)
+        setContentView(R.layout.activity_users)
 
         dbHelper.checkLoginState(this)
         val toolbar = findViewById<Toolbar>(R.id.toolbar) // Toolbar
@@ -60,7 +61,12 @@ class UserActivity : AppCompatActivity() {
                         .addToBackStack(null) // Opcional: permite volver atrás
                         .commit()
                 }
-                R.id.nav_reportes -> showToast("Reportes")
+                R.id.nav_reportes -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, FragmentUser())
+                        .addToBackStack(null)
+                        .commit()
+                }
                 R.id.nav_clientes -> showToast("Clientes")
                 R.id.nav_facturacion -> showToast("Facturación")
                 R.id.nav_iniciar_sesion -> {
