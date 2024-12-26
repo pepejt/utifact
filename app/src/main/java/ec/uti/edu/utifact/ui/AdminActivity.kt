@@ -23,6 +23,7 @@ import ec.uti.edu.utifact.R
 import ec.uti.edu.utifact.database
 import ec.uti.edu.utifact.fragments.FragmentClient
 import ec.uti.edu.utifact.fragments.FragmentProducto
+import ec.uti.edu.utifact.fragments.FragmentUser
 
 class AdminActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -58,6 +59,12 @@ class AdminActivity : AppCompatActivity() {
                 R.id.nav_informacion -> {
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, FragmentInformation())
+                        .addToBackStack(null)
+                        .commit()
+                }
+                R.id.nav_usuarios->{
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, FragmentUser())
                         .addToBackStack(null)
                         .commit()
                 }
