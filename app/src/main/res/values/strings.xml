@@ -41,4 +41,10 @@
     <string name="producto">Producto</string>
     <string name="stock">Stock</string>
     <string name="ingreUsu">Ingreso de Usuarios</string>
+    <string name="nombre">Nombre:</string>
+    <string name="cedula">Cedula:</string>
+    <string name="total">Total:</string>
+    <string name="subtotal">SubTotal:</string>
+    <string name="iva_12">IVA(12%):</string>
+    <string name="facturar">Facturar</string>
 </resources>

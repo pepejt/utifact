@@ -22,6 +22,7 @@ import ec.edu.uti.facturacionelectronica.fragments.FragmentInformation
 import ec.uti.edu.utifact.R
 import ec.uti.edu.utifact.database
 import ec.uti.edu.utifact.fragments.FragmentClient
+import ec.uti.edu.utifact.fragments.FragmentFacturar
 import ec.uti.edu.utifact.fragments.FragmentProducto
 import ec.uti.edu.utifact.fragments.FragmentUser
 
@@ -81,7 +82,16 @@ class AdminActivity : AppCompatActivity() {
                         .addToBackStack(null)
                         .commit()
                 }
-                R.id.nav_facturacion -> showToast("Facturación")
+                R.id.nav_facturacion -> {
+                    // Reemplazar el fragmento
+                    val fragment = FragmentFacturar()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, fragment)
+                        .addToBackStack(null) 
+                        .commit()
+
+                    true
+                }
                 R.id.nav_iniciar_sesion -> {
                     dbHelper.logout(this)
                     val intent = Intent(this, LoginActivity::class.java)
