@@ -1,4 +1,4 @@
-package ec.uti.edu.utifact
+package ec.edu.producto
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("ec.uti.edu.utifact", appContext.packageName)
+        assertEquals("ec.edu.producto", appContext.packageName)
     }
 }

@@ -1,56 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity = "top"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    tools:context=".ui.MainActivity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:height="200dp"
-        android:text="Uti Fact" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:background="#8A2BE2"
+        android:padding="16dp"
+        android:text="Producto"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp" />
 
-    <androidx.gridlayout.widget.GridLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:columnCount="2"
-        app:useDefaultMargins="true">
-
-
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-    </androidx.gridlayout.widget.GridLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+        android:layout_height="match_parent"/>
+</LinearLayout>

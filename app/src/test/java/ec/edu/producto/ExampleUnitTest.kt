@@ -1,4 +1,4 @@
-package ec.uti.edu.utifact
+package ec.edu.producto
 
 import org.junit.Test
 
