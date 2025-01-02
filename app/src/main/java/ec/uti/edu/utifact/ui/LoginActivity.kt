@@ -53,7 +53,9 @@ class LoginActivity : AppCompatActivity() {
         val emisorId = dbHelper.insertEmisorIfNotExists(
             "Mi Empresa",
             "Av. Principal",
-            "0987654321"
+            "0987654321",
+            "empresa@ejemplo.com",
+            "1234567890"
         )
         if (emisorId != -1L) {
             println("Emisor insertado con ID: $emisorId")

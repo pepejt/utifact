@@ -47,4 +47,13 @@
     <string name="subtotal">SubTotal:</string>
     <string name="iva_12">IVA(12%):</string>
     <string name="facturar">Facturar</string>
+    <string name="BusRep">Busqueda de Reportes</string>
+    <string name="NumFact">Num Factura</string>
+    <string name="Nfact">Factura#001</string>
+    <string name="ruc">RUC</string>
+    <string name="razSoc">Razon Social</string>
+    <string name="direccion">Direccion</string>
+    <string name="correo">Correo Electronico</string>
+    <string name="telefono">Telefono</string>
+    <string name="editar">Editar</string>
 </resources>

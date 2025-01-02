@@ -57,6 +57,31 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/txtProdRbF"
+                android:layout_width="179dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:textAlignment="center"
+                android:textColorHint="@color/orange"
+                android:textColor="@color/black"
+                android:inputType="number"
+                android:hint="@string/codProd" />
+
+            <Button
+                android:id="@+id/btnProF"
+                android:layout_width="117dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#F47121"
+                android:text="@string/buscar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView

@@ -22,6 +22,20 @@ public class database (context: Context): SQLiteOpenHelper(
         const val TABLE_CLIENTES = "clientes"
         const val TABLE_EMISOR = "emisor"
         const val TABLE_PRODUCT = "productos"
+        const val TABLE_FACTURA = "factura"
+        const val TABLE_DETALLE_FACTURA = "detalle_factura"
+
+        // Columnas de la tabla Factura
+        const val COLUMN_FACTURA_ID = "id_factura"
+        const val COLUMN_FACTURA_FECHA = "fecha"
+        const val COLUMN_FACTURA_CLIENTE = "cliente"
+        const val COLUMN_FACTURA_TOTAL = "total"
+
+        // Columnas de la tabla Detalle Factura
+        const val COLUMN_DETFACT_ID = "id_detalle"
+        const val COLUMN_DETFACT_FACTURA = "id_factura"
+        const val COLUMN_DETFACT_PRODUCTO = "id_producto"
+        const val COLUMN_DETFACT_CANTIDAD = "cantidad"
 
         // Columnas de la tabla Usuarios
         const val COLUMN_USER_ID = "id_users"
@@ -48,7 +62,9 @@ public class database (context: Context): SQLiteOpenHelper(
         // Columnas de la tabla Emisor
         const val COLUMN_EMISOR_ID = "id_emisor"
         const val COLUMN_EMISOR_NAME = "nombresEmpre"
+        const val COLUMN_EMISOR_RUC = "rucEmpre"
         const val COLUMN_EMISOR_ADDRESS = "direccionEmpre"
+        const val COLUMN_EMISOR_EMAIL = "emailEmpre"
         const val COLUMN_EMISOR_PHONE = "TelefonoEmpre"
     }
 
@@ -63,6 +79,31 @@ public class database (context: Context): SQLiteOpenHelper(
             )
         """
         db.execSQL(createTableUsuarios)
+
+        // Crear tabla Facturar
+        val createTableFacturar = """
+            CREATE TABLE $TABLE_FACTURA (
+                $COLUMN_FACTURA_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                $COLUMN_FACTURA_FECHA DATETIME DEFAULT CURRENT_TIMESTAMP,
+                $COLUMN_FACTURA_CLIENTE NVARCHAR(50),
+                $COLUMN_FACTURA_TOTAL DECIMAL(10,2)
+            )
+        """
+        db.execSQL(createTableFacturar)
+
+
+        // Crear tabla Detalle Factura
+        val createTableFacturaDetalle = """
+            CREATE TABLE $TABLE_DETALLE_FACTURA (
+                $COLUMN_DETFACT_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                $COLUMN_DETFACT_FACTURA INTEGER,
+                $COLUMN_DETFACT_PRODUCTO NVARCHAR(65),
+                $COLUMN_DETFACT_CANTIDAD NVARCHAR(150),
+                $COLUMN_CLIENT_CEDULA NVARCHAR(13),
+                $COLUMN_CLIENT_PHONE NVARCHAR(10)
+            )
+        """
+        db.execSQL(createTableFacturaDetalle)
 
         // Crear tabla Clientes
         val createTableClientes = """
@@ -81,9 +122,12 @@ public class database (context: Context): SQLiteOpenHelper(
         val createTableEmisor = """
             CREATE TABLE $TABLE_EMISOR (
                 $COLUMN_EMISOR_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                $COLUMN_EMISOR_RUC NVARCHAR(13),
                 $COLUMN_EMISOR_NAME NVARCHAR(50),
                 $COLUMN_EMISOR_ADDRESS NVARCHAR(60),
-                $COLUMN_EMISOR_PHONE NVARCHAR(50)
+                $COLUMN_EMISOR_PHONE NVARCHAR(50),
+                $COLUMN_EMISOR_EMAIL NVARCHAR(150),
+                $COLUMN_EMISOR_PHONE NVARCHAR(10)
             )
         """
         db.execSQL(createTableEmisor)
@@ -106,6 +150,8 @@ public class database (context: Context): SQLiteOpenHelper(
         db.execSQL("DROP TABLE IF EXISTS $TABLE_CLIENTES")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_EMISOR")
         db.execSQL("DROP TABLE IF EXISTS $TABLE_PRODUCT")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_FACTURA")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_DETALLE_FACTURA")
         onCreate(db)
     }
 
@@ -165,18 +211,20 @@ public class database (context: Context): SQLiteOpenHelper(
     }
 
 
-    fun insertEmisor(nombresEmpre: String, direccionEmpre: String, telefonoEmpre: String): Long {
+    fun insertEmisor(nombresEmpre: String, direccionEmpre: String, telefonoEmpre: String, emailEmpre: String,rucEmpre: String): Long {
         val db = writableDatabase
         val values = ContentValues().apply {
             put(COLUMN_EMISOR_NAME, nombresEmpre)
             put(COLUMN_EMISOR_ADDRESS, direccionEmpre)
             put(COLUMN_EMISOR_PHONE, telefonoEmpre)
+            put(COLUMN_EMISOR_EMAIL, emailEmpre)
+            put(COLUMN_EMISOR_RUC, rucEmpre)
         }
         return db.insert(TABLE_EMISOR, null, values)
     }
-    fun insertEmisorIfNotExists(nombresEmpre: String, direccionEmpre: String, telefonoEmpre: String): Long {
+    fun insertEmisorIfNotExists(nombresEmpre: String, direccionEmpre: String, telefonoEmpre: String, emailEmpre: String,rucEmpre: String): Long {
         if (!isEmisorExists(nombresEmpre, telefonoEmpre)) {
-            return insertEmisor(nombresEmpre, direccionEmpre, telefonoEmpre)
+            return insertEmisor(nombresEmpre, direccionEmpre, telefonoEmpre, emailEmpre,rucEmpre)
         }
         return -1 // Retorna -1 si ya existe
     }
