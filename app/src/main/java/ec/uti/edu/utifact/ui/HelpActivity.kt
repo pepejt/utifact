@@ -14,12 +14,6 @@ class HelpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_help)
-        var toolbar = findViewById<Toolbar>(R.id.help_toolbar)
-        setSupportActionBar(toolbar)
-        val actionBar: ActionBar? = supportActionBar
-        actionBar?.setTitle("Ayuda")
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.setNavigationOnClickListener { onBackPressed() };
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
