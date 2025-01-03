@@ -15,4 +15,4 @@ manejo de base de datos SQLite offline
 >manejo de solicitudes mediante api
 
 Copirray @2024
-create by  @blackdeath1215
+create by  @blackdeath12151
