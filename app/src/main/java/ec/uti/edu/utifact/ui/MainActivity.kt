@@ -39,6 +39,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.mn_cliente -> {
+                startActivity(Intent(this, ClientesActivity::class.java))
                 true
             }
             R.id.mn_factura -> {

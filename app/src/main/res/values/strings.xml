@@ -2,4 +2,7 @@
     <string name="app_name">utifact</string>
     <string name="username">Usuario</string>
     <string name="password">Clave</string>
+    <string name="c_dula_del_cliente">Cédula del cliente</string>
+    <string name="nombres">Nombres</string>
+    <string name="apellidos">Apellidos</string>
 </resources>
