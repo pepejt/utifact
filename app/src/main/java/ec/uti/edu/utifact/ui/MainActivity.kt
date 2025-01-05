@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import ec.uti.edu.utifact.R
+import ec.uti.edu.utifact.product.ui.ProductListActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,9 +34,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle item selection.
         return when (item.itemId) {
             R.id.mn_producto -> {
+                startActivity(Intent(this, ProductListActivity::class.java))
                 true
             }
             R.id.mn_cliente -> {
