@@ -28,41 +28,30 @@ class FragmentReport: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Inicializar el RecyclerView
-        recyclerView = view.findViewById(R.id.rcvProd)
+        recyclerView = view.findViewById(R.id.rcvReports)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         // Inicializar la base de datos
         dbHelper = database(requireContext())
 
         // Obtener datos de la base de datos
-        val productos = dbHelper.getProductos()
+        val facturas = dbHelper.getFacturas()
         // Configurar el adaptador
         reportadapter = ReporteAdapter(
-            productos,
-            onEditClick = { producto ->
+            facturas,
+            onEditClick = { facturas ->
                 // Lógica para editar cliente
-                Toast.makeText(requireContext(), "Editar: ${producto.codigo}", Toast.LENGTH_SHORT).show()
-            },
-            onDeleteClick = { cliente ->
-                // Lógica para eliminar cliente
-                Toast.makeText(requireContext(), "Eliminar: ${cliente.nombre}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Editar: ${facturas.id}", Toast.LENGTH_SHORT).show()
             }
         )
         // Asignar el adaptador al RecyclerView
-        recyclerView.adapter = productoadapter
+        recyclerView.adapter = reportadapter
 
-        val button = view.findViewById<MaterialButton>(R.id.btnBusProd)
+        val button = view.findViewById<MaterialButton>(R.id.btnBusRep)
         button.setOnClickListener {
             onBuscarProducto(view)
-        }
-        val BtnAdd = view.findViewById<MaterialButton>(R.id.btnAddProd)
-        BtnAdd.setOnClickListener {
-            onAgregarProducto(view)
         }
     }
     private fun onBuscarProducto(view: View) {
         Toast.makeText(requireContext(), "Buscar producto clickeado", Toast.LENGTH_SHORT).show()
-    }
-    private fun onAgregarProducto(view: View) {
-        Toast.makeText(requireContext(), "Agregar producto intent", Toast.LENGTH_SHORT).show()
     }
 }

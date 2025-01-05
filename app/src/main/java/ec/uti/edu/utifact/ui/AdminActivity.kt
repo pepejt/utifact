@@ -22,6 +22,7 @@ import ec.edu.uti.facturacionelectronica.fragments.FragmentInformation
 import ec.uti.edu.utifact.R
 import ec.uti.edu.utifact.database
 import ec.uti.edu.utifact.fragments.FragmentClient
+import ec.uti.edu.utifact.fragments.FragmentEmisor
 import ec.uti.edu.utifact.fragments.FragmentFacturar
 import ec.uti.edu.utifact.fragments.FragmentProducto
 import ec.uti.edu.utifact.fragments.FragmentReport
@@ -97,6 +98,12 @@ class AdminActivity : AppCompatActivity() {
                         .commit()
 
                     true
+                }
+                R.id.nav_emisor ->{
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, FragmentEmisor())
+                        .addToBackStack(null)
+                        .commit()
                 }
                 R.id.nav_iniciar_sesion -> {
                     dbHelper.logout(this)
