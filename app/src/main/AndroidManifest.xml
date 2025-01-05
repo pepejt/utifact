@@ -10,21 +10,22 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Utifact"
+        android:theme="@style/Theme.ModuloClientes"
         tools:targetApi="31">
         <activity
-            android:name=".ui.HelpActivity"
+            android:name=".Menu_Principal"
             android:exported="false" />
         <activity
-            android:name=".ui.LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
+            android:name=".clientes_activity"
+            android:exported="false" />
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
+            android:name=".activity_clientes"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.ModuloClientes">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
