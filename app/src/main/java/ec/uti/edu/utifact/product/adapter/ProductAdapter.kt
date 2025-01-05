@@ -9,6 +9,7 @@ import ec.uti.edu.utifact.R
 import ec.uti.edu.utifact.databinding.ItemProductBinding
 import ec.uti.edu.utifact.product.entity.Product
 
+
 class ProductAdapter(
     private val onDeleteClick: (Product) -> Unit,
     private val onItemClick: (Product) -> Unit
