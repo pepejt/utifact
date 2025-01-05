@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-parcelize")  // Añade esta línea
+    id("kotlin-parcelize")
 }
 
 android {
@@ -19,7 +19,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding = true  // Añade esta sección
+        viewBinding = true
     }
 
     buildTypes {
