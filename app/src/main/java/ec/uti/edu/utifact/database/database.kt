@@ -447,7 +447,7 @@ public class database (context: Context): SQLiteOpenHelper(
         }
         cursor.close()
         db.close()
-        return usuarios
+        return facturas
     }
 
 }
