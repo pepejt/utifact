@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Modulo Clientes</string>
+    <string name="app_name">utifact</string>
+    <string name="username">Usuario</string>
+    <string name="password">Clave</string>
 </resources>
