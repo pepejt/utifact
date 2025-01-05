@@ -24,6 +24,7 @@ import ec.uti.edu.utifact.database
 import ec.uti.edu.utifact.fragments.FragmentClient
 import ec.uti.edu.utifact.fragments.FragmentFacturar
 import ec.uti.edu.utifact.fragments.FragmentProducto
+import ec.uti.edu.utifact.fragments.FragmentReport
 import ec.uti.edu.utifact.fragments.FragmentUser
 
 class AdminActivity : AppCompatActivity() {
@@ -69,7 +70,12 @@ class AdminActivity : AppCompatActivity() {
                         .addToBackStack(null)
                         .commit()
                 }
-                R.id.nav_reportes -> showToast("Reportes")
+                R.id.nav_reportes -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, FragmentReport())
+                        .addToBackStack(null)
+                        .commit()
+                }
                 R.id.nav_productos ->{
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, FragmentProducto())

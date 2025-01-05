@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import ec.uti.edu.utifact.entity.Cliente
+import ec.uti.edu.utifact.entity.Factura
 import ec.uti.edu.utifact.entity.Producto
 import ec.uti.edu.utifact.entity.User
 import ec.uti.edu.utifact.ui.LoginActivity
@@ -423,6 +424,25 @@ public class database (context: Context): SQLiteOpenHelper(
                 val provedProd= cursor.getInt(3)
                 usuarios.add(User(id, codeProd, nameProd, provedProd))
                 println("Usuario en base de datos: ${cursor.getInt(0)}, ${cursor.getString(1)}, ${cursor.getString(2)}")
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+        return usuarios
+    }
+    fun getFacturas(): List<Factura> {
+        val facturas = mutableListOf<Factura>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM factura", null)
+
+        if (cursor.moveToFirst()) {
+            println("Número de registros en la tabla usuarios: ${cursor.count}")
+            do {
+                val id = cursor.getInt(0)
+                val cliente = cursor.getInt(1)
+                val total= cursor.getDouble(2)
+                facturas.add(Factura(id, cliente, total))
+                println("factura en base de datos: ${cursor.getInt(0)}, ${cursor.getString(1)}, ${cursor.getString(2)}")
             } while (cursor.moveToNext())
         }
         cursor.close()
