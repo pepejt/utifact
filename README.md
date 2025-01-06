@@ -14,5 +14,5 @@ manejo de base de datos SQLite offline
 >manejo de una api gestion de SQL online (MYSQL) (Gratuito)
 >manejo de solicitudes mediante api
 
-Copirray @2024
+Copyright @2024
 create by  @blackdeath1215
