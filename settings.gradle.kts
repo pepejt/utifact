@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "utifact"
+rootProject.name = "cliente"
 include(":app")
  

@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">utifact</string>
-    <string name="username">Usuario</string>
-    <string name="password">Clave</string>
+    <string name="app_name">cliente</string>
+    <string name="select">Seleccione un cliente para iniciar</string>
+    <string name="cope">COOPERATIVA DE AHORRO Y CREDITO OSCUS LTDA.</string>
+    <string name="tungu">TUNGURAHUA /AMBATO/MATRIZ /LALAMA 06-39 Y BOLIVAR Y SUCRE</string>
 </resources>

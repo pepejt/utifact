@@ -1,56 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity = "top"
     android:orientation="vertical"
-    tools:context=".ui.MainActivity">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:height="200dp"
-        android:text="Uti Fact" />
-
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:columnCount="2"
-        app:useDefaultMargins="true">
+    android:gravity="center"
+    android:background="#C2FBED"
+    tools:context=".MainActivity">
 
 
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+    <LinearLayout
+        android:layout_width="377dp"
+        android:layout_height="160dp"
+        android:gravity="center_horizontal"
+        android:background="#E5FAFAFA"
+      android:orientation="vertical">
 
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/select" />
 
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+        <Button
+            android:id="@+id/button"
+            android:layout_width="192dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange"
+            android:textColor="@color/black"
+            android:onClick="onIngresoClick"
+            android:text="Seleccione cliente" />
 
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-    </androidx.gridlayout.widget.GridLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="1890001323001" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cope" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="validaconta@oscus.coop" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8sp"
+            android:text="@string/tungu" />
+
+
+    </LinearLayout>
+</LinearLayout>
