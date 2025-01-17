@@ -6,7 +6,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 @Entity
 data class Cliente{
-
     @PrimaryKey var id : Int,
     @ColumnInfo(name = "Nombre") var nombre : String,
     @ColumnInfo(name = "Apellido") var apellido : String,
