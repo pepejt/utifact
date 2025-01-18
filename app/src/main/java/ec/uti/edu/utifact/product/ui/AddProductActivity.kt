@@ -35,20 +35,31 @@ class AddProductActivity : AppCompatActivity() {
 
     private fun setupProductDropdown() {
         val products = listOf(
-            "Laptop HP",
-            "Monitor Dell",
-            "Teclado Mecánico",
-            "Mouse Gamer",
-            "Audífonos Bluetooth"
+            Product(1, "Monitor Dell", 1, 150.0, "Monitor Full HD"),
+            Product(2, "Laptop", 1, 850.0, "Laptop con 16GB RAM"),
+            Product(3, "Monitor", 1, 120.0, "Monitor HD"),
+            Product(4, "Teclado", 1, 25.0, "Teclado mecánico"),
+            Product(5, "Mouse", 2, 15.0, "Mouse inalámbrico")
         )
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, products)
+        val productNames = products.map { it.name }
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, productNames)
         binding.autoCompleteProduct.setAdapter(adapter)
 
         binding.autoCompleteProduct.setOnItemClickListener { _, _, position, _ ->
-            selectedProduct = adapter.getItem(position)?.toString()
+            selectedProduct = productNames[position]
+
+            val selected = products.find { it.name == selectedProduct }
+            selected?.let {
+                binding.etQuantity.setText(it.quantity.toString())
+                binding.etPrice.setText(String.format("%.2f", it.price))
+                binding.etAdditionalInfo.setText(it.additionalInfo)
+            }
         }
     }
+
+
 
     private fun loadProductData(product: Product) {
         binding.autoCompleteProduct.setText(product.name)
