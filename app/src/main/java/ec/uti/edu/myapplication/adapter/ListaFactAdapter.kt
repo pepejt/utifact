@@ -3,13 +3,15 @@ package ec.uti.edu.myapplication.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import ec.uti.edu.utifact.R
+import ec.uti.edu.myapplication.R
 import ec.uti.edu.utifact.entity.Factura
 
 class ListaFactAdapter(
-    private val reportes:List<Factura>
+    private val reportes:List<Factura>,
+    private val onEditClick: (Factura) -> Unit
 ): RecyclerView.Adapter<ListaFactAdapter.ReporteViewHolder>()  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReporteViewHolder {
@@ -20,6 +22,9 @@ class ListaFactAdapter(
     override fun onBindViewHolder(holder: ReporteViewHolder, position: Int) {
         val reporte = reportes[position]
         holder.bind(reporte)
+        holder.itemView.findViewById<ImageButton>(R.id.imgEdit).setOnClickListener {
+            onEditClick(reporte)
+        }
     }
 
     override fun getItemCount(): Int = reportes.size
