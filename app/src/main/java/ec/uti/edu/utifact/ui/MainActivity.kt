@@ -1,7 +1,10 @@
 package ec.uti.edu.utifact.ui
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences.Editor
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -10,7 +13,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.preference.PreferenceManager
+import androidx.room.Room
+import ec.edu.uti.juego.dao.AppDatabase
 import ec.uti.edu.utifact.R
+import ec.uti.edu.utifact.entity.Configuracion
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +27,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.main_toolbar))
 
+        val db = Room.databaseBuilder(
+            this,
+            AppDatabase::class.java, "utifact"
+        ).allowMainThreadQueries().build()
 
+        val configuracionDao = db.ConfiguracionDao()
+        val configuracion = configuracionDao.getById(1);
+        if (configuracion == null){
+            configuracionDao.insert(Configuracion(1,"1803728151001","BsxLabs","001-101"))
+        }
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor: Editor = sharedPreferences.edit()
+        editor.putString("ruc",configuracion.ruc)
+        editor.putString("empresa",configuracion.empresa)
+        editor.putString("punto_emision",configuracion.puntoEmision)
+        editor.commit()
+
+        sharedPreferences.all.forEach {
+            Log.d("Preferences", "${it.key} -> ${it.value}")
+        }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -60,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.mn_configuracion -> {
-                startActivity(Intent(this, HelpActivity::class.java))
+                startActivity(Intent(this, SettingActivity::class.java))
                 true
             }
             R.id.mn_ayuda -> {

@@ -1,0 +1,41 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        app:key="empresa_category"
+        app:icon="@drawable/ic_account"
+        app:title="Datos Empresa">
+
+        <EditTextPreference
+            app:key="ruc"
+            app:title="@string/ruc_title"
+            app:enabled="false"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="empresa"
+            app:enabled="false"
+            app:title="@string/empresa_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="punto_emision"
+            app:enabled="false"
+            app:title="@string/punto_emision_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="help_category"
+        app:icon="@drawable/ic_help"
+        app:title="Acerca de">
+
+        <Preference
+            app:key="developers"
+            app:summary="Copyright: pepejt\nColaboradores: andresinose, CZurita14, Khayro0, Fernando-8a, AnthonyGuti, PatricZ29, AlanLozada64, Javier454"
+            app:title="Desarrolladores"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
