@@ -9,7 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import ec.uti.edu.utifact.R
+import com.example.moduloclientes.R
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.mn_factura -> {
+                startActivity(Intent(this, ListaFactura::class.java))
                 true
             }
             R.id.mn_ayuda -> {
