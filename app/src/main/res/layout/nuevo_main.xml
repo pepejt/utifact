@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/mainnue"
+    android:padding="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1976D2"
+        android:padding="8dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1976D2"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Listado de factura"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/btnAddReg"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
+        android:contentDescription="Agregar"
+        android:src="@android:drawable/ic_input_add"
+        app:tint="#000000" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Numero Factura" />
+
+        <EditText
+            android:id="@+id/etxtCliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:hint="Cliente" />
+        <EditText
+            android:id="@+id/etxtFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:hint="Fecha" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/etxtValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date"
+            android:textAlignment="center"
+            android:layout_marginTop="20dp"
+            android:hint="Valor" />
+
+        <Button
+            android:id="@+id/btnFacturar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="#1976D2"
+            android:textColor="#fff"
+            android:text="Facturar" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
