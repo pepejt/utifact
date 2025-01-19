@@ -20,6 +20,9 @@
             android:parentActivityName=".ui.MainActivity"
             />
         <activity
+            android:name=".ui.ClientesActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.HelpActivity"
             android:exported="false" />
         <activity

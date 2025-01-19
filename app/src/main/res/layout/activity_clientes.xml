@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#5A2D84"
+    tools:context=".ui.ClientesActivity">
+
+    <!-- Imagen del icono superior -->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="66dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="16dp"
+            app:srcCompat="@drawable/icons8_agregar_administrador_50" />
+
+        <TextView
+            android:id="@+id/tv_titulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="REGISTRO DE CLIENTES"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etFacturaNumber"
+                android:layout_width="269dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="#FFFFFF"
+                android:hint="@string/c_dula_del_cliente"
+                android:inputType="number"
+                android:padding="8dp"
+                android:textAlignment="center" />
+
+            <Button
+                android:id="@+id/btnBuscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="#D9D9D9"
+                android:text="Buscar"
+                android:onClick="onBuscarClick"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/txtnombre"
+                    android:layout_width="167dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:background="#FFFFFF"
+                    android:hint="@string/nombres"
+                    android:padding="8dp" />
+                <EditText
+                    android:id="@+id/txtcedula"
+                    android:layout_width="167dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black"
+                    android:layout_marginEnd="8dp"
+                    android:background="#FFFFFF"
+                    android:inputType="number"
+                    android:hint="Cédula"
+                    android:padding="8dp" />
+                <EditText
+                    android:id="@+id/txttelefono"
+                    android:layout_width="167dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:background="#FFFFFF"
+                    android:hint="Teléfono"
+                    android:padding="8dp" />
+                <EditText
+                    android:id="@+id/txtcorreo"
+                    android:layout_width="167dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/black"
+                    android:background="#FFFFFF"
+                    android:hint="Correo"
+                    android:padding="8dp" />
+                <Button
+                    android:id="@+id/btn_guardar"
+                    android:layout_width="109dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="#428524"
+                    android:text="Guardar"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <EditText
+                    android:id="@+id/txtapellido"
+                    android:layout_width="167dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/black"
+                    android:background="#FFFFFF"
+                    android:hint="@string/apellidos"
+                    android:padding="8dp" />
+                <EditText
+                    android:id="@+id/txtfenac"
+                    android:layout_width="167dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/black"
+                    android:inputType="date"
+                    android:background="#FFFFFF"
+                    android:hint="F. Nacimiento"
+                    android:padding="8dp" />
+                <EditText
+                    android:id="@+id/txtciudad"
+                    android:layout_width="167dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/black"
+                    android:background="#FFFFFF"
+                    android:hint="Ciudad"
+                    android:padding="8dp" />
+                <EditText
+                    android:id="@+id/txtdir"
+                    android:layout_width="167dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/black"
+                    android:background="#FFFFFF"
+                    android:hint="Dirección"
+                    android:padding="8dp" />
+                <Button
+                    android:id="@+id/btn_cancelar"
+                    android:layout_width="109dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="#428524"
+                    android:text="Cancelar"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvClientes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
