@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="cb_light_blue">#EDFBFD</color>
+    <color name="ci_light_blue">#3FD2EB</color>
+
+    <color name="cb_light_purple">#F1ECFE</color>
+    <color name="ci_light_purple">#7543EC</color>
+
+    <color name="cb_light_orange">#FFF7F1</color>
+    <color name="ci_light_orange">#FF9444</color>
+
+    <color name="cb_light_green">#ECFBF2</color>
+    <color name="ci_light_green">#48DC96</color>
 </resources>

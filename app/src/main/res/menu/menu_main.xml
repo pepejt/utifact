@@ -10,6 +10,9 @@
     <item android:id="@+id/mn_factura"
         android:title="Facturas"
         app:showAsAction="never"/>
+    <item android:id="@+id/mn_configuracion"
+        android:title="Configuracion"
+        app:showAsAction="never"/>
     <item android:id="@+id/mn_ayuda"
         android:title="Ayuda"
         app:showAsAction="never"/>

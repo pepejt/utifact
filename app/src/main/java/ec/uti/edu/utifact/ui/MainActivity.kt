@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -18,12 +19,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.main_toolbar))
 
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+    }
+
+    fun onClickFacturar(v: View){
+        startActivity(Intent(this, HelpActivity::class.java))
+    }
+    fun onClickVentas(v: View){
+        startActivity(Intent(this, HelpActivity::class.java))
+    }
+    fun onClickProducto(v: View){
+        startActivity(Intent(this, HelpActivity::class.java))
+    }
+    fun onClickCliente(v: View){
+        startActivity(Intent(this, HelpActivity::class.java))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -42,6 +57,10 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             R.id.mn_factura -> {
+                true
+            }
+            R.id.mn_configuracion -> {
+                startActivity(Intent(this, HelpActivity::class.java))
                 true
             }
             R.id.mn_ayuda -> {
