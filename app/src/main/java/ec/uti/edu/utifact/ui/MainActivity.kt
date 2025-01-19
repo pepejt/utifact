@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             AppDatabase::class.java, "utifact"
         ).allowMainThreadQueries().build()
 
-        val configuracionDao = db.ConfiguracionDao()
+        val configuracionDao = db.configuracionDao()
         val configuracion = configuracionDao.getById(1);
         if (configuracion == null){
             configuracionDao.insert(Configuracion(1,"1803728151001","BsxLabs","001-101"))
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(Intent(this, HelpActivity::class.java))
     }
     fun onClickCliente(v: View){
-        startActivity(Intent(this, HelpActivity::class.java))
+        startActivity(Intent(this, ClientesActivity::class.java))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

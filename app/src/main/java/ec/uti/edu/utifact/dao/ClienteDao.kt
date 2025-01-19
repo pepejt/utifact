@@ -1,11 +1,13 @@
 package ec.uti.edu.utifact.dao
 
+import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import ec.uti.edu.utifact.ui.Cliente
+import ec.uti.edu.utifact.obj.Cliente
 
+@Dao
 interface ClienteDao {
 
     @Query("SELECT * FROM cliente")
@@ -21,7 +23,7 @@ interface ClienteDao {
     fun findByCedula(first: String): Cliente
 
     @Insert
-    fun insertAll(vararg salas: Cliente): List<Cliente>
+    fun insertAll(vararg salas: Cliente)
 
     @Delete
     fun delete(cliente : Cliente)

@@ -39,7 +39,7 @@ class SettingActivity : AppCompatActivity() {
             AppDatabase::class.java, "utifact"
         ).allowMainThreadQueries().build()
 
-        val configuracionDao = db.ConfiguracionDao()
+        val configuracionDao = db.configuracionDao()
         val configuracion = configuracionDao.getById(1);
     }
 }

@@ -132,7 +132,7 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/round_outline"
                     android:backgroundTint="@color/cb_light_green"
-                    android:src="@drawable/ic_cart_checkout"
+                    android:src="@drawable/ic_workspaces"
                     app:tint="@color/ci_light_green"
                     />
 
@@ -169,7 +169,7 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@drawable/round_outline"
                     android:backgroundTint="@color/cb_light_blue"
-                    android:src="@drawable/ic_description"
+                    android:src="@drawable/ic_client"
                     app:tint="@color/ci_light_blue"
                     />
 
