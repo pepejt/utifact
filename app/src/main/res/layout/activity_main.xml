@@ -1,56 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity = "top"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.MainActivity">
+    android:id="@+id/main"
+    android:padding="8dp">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/main_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:height="200dp"
-        android:text="Uti Fact" />
+        android:background="#1976D2"
+        android:padding="8dp">
 
-    <androidx.gridlayout.widget.GridLayout
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1976D2"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="Listado de factura"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btnAdd"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:contentDescription="Agregar"
+            android:src="@android:drawable/ic_input_add"
+            app:tint="#000000" />
+
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:columnCount="2"
-        app:useDefaultMargins="true">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:background="#E0E0E0">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="N°"
+            android:background="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Estado"
+            android:background="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Cliente"
+            android:background="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Fecha"
+            android:background="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="Valor"
+            android:background="#FFFFFF"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFacturas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp" />
 
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
 
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
 
-        <ImageButton
-            android:src="@drawable/ic_launcher_background"
-            app:layout_columnWeight="1"
-            app:layout_rowWeight="1" />
-    </androidx.gridlayout.widget.GridLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>
