@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/mn_producto"
-        android:title="Productos"
-        app:showAsAction="never"/>
-    <item android:id="@+id/mn_cliente"
-        android:title="Clientes"
-        app:showAsAction="never"/>
-    <item android:id="@+id/mn_factura"
-        android:title="Facturas"
-        app:showAsAction="never"/>
-    <item android:id="@+id/mn_ayuda"
-        android:title="Ayuda"
-        app:showAsAction="never"/>
+
     <item android:id="@+id/mn_configuracion"
         android:title="Configuracion"
+        android:iconTintMode="src_in"
         android:icon="@drawable/ic_settings"
         app:showAsAction="always"/>
 </menu>

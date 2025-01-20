@@ -8,9 +8,12 @@
 
     <color name="cb_light_purple">#F1ECFE</color>
     <color name="ci_light_purple">#7543EC</color>
+    <color name="cbg_light_purple">#BCA5F2</color>
 
     <color name="cb_light_orange">#FFF7F1</color>
     <color name="ci_light_orange">#FF9444</color>
+    <color name="cb_dark_orange">#D55812</color>
+
 
     <color name="cb_light_green">#ECFBF2</color>
     <color name="ci_light_green">#48DC96</color>

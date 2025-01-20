@@ -48,6 +48,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.preference:preference-ktx:1.2.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("androidx.gridlayout:gridlayout:1.0.0")
     implementation("androidx.compose.runtime:runtime:1.0.1")
     implementation(libs.androidx.constraintlayout)

@@ -1,6 +1,11 @@
 <PreferenceScreen
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+    <Preference
+        app:key="loged"
+        app:enabled="true"
+        app:icon="@drawable/ic_cancel"
+        app:title="@string/cerrar_sesion"
+        app:useSimpleSummaryProvider="true" />
     <PreferenceCategory
         app:key="empresa_category"
         app:icon="@drawable/ic_account"
@@ -23,6 +28,8 @@
             app:enabled="false"
             app:title="@string/punto_emision_title"
             app:useSimpleSummaryProvider="true" />
+
+
 
     </PreferenceCategory>
 
